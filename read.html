@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read - The Reading Quill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="read.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand">The Reading Quill</a>
+    <div class="nav-links">
+      <a href="read.html" class="active">Read</a>
+      <a href="write.html">Write</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Greeting -->
+    <header class="greeting">
+      <div>
+        <p class="greeting-sub">Good evening,</p>
+        <h1 class="greeting-name">Reader <span class="quill">✦</span></h1>
+      </div>
+      <a href="#browse" class="browse-cta">Browse Books ↓</a>
+    </header>
+
+    <!-- Currently Reading -->
+    <section class="section" id="currently-reading">
+      <div class="section-header">
+        <h2>Currently Reading</h2>
+        <span class="see-all" onclick="scrollTo({top:document.getElementById('browse').offsetTop,behavior:'smooth'})">+ Add book</span>
+      </div>
+      <div class="current-books" id="currentBooks">
+        <!-- Populated by JS -->
+        <div class="empty-state" id="emptyCurrently">
+          <span class="empty-icon">📖</span>
+          <p>No books in progress yet.</p>
+          <p class="empty-sub">Browse below and start reading!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading History -->
+    <section class="section" id="history">
+      <div class="section-header">
+        <h2>Reading History</h2>
+        <span class="badge" id="historyCount">0 finished</span>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="empty-state" id="emptyHistory">
+          <span class="empty-icon">🏆</span>
+          <p>Books you finish will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bookmarked -->
+    <section class="section" id="wishlist">
+      <div class="section-header">
+        <h2>Bookmarked</h2>
+        <span class="badge" id="wishCount">0 saved</span>
+      </div>
+      <div class="wish-grid" id="wishGrid">
+        <div class="empty-state" id="emptyWish">
+          <span class="empty-icon">🔖</span>
+          <p>Save books you want to read next.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Browse / Discover -->
+    <section class="section" id="browse">
+      <div class="section-header">
+        <h2>Browse &amp; Discover</h2>
+        <div class="search-wrap">
+          <input type="text" id="searchInput" placeholder="Search by title or genre…" oninput="filterBooks()" />
+        </div>
+      </div>
+      <div class="genre-filter" id="genreFilter"></div>
+      <div class="browse-grid" id="browseGrid"></div>
+    </section>
+
+    <!-- Recommended -->
+    <section class="section" id="recommended">
+      <div class="section-header">
+        <h2>Recommended for You</h2>
+        <span class="badge">Curated picks</span>
+      </div>
+      <div class="rec-grid" id="recGrid"></div>
+    </section>
+
+  </div>
+
+  <!-- Progress Modal -->
+  <div class="modal-overlay" id="progressModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-cover" id="modalCover"></div>
+      <h3 id="modalTitle"></h3>
+      <p class="modal-author" id="modalAuthor"></p>
+      <div class="progress-section">
+        <div class="progress-track">
+          <div class="progress-fill" id="modalBar"></div>
+        </div>
+        <p class="progress-label" id="modalPercent">0%</p>
+      </div>
+      <label class="page-label">Update pages read</label>
+      <div class="page-input-row">
+        <input type="number" id="pageInput" placeholder="e.g. 120" min="0" />
+        <span class="page-total" id="modalTotal"></span>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn primary" onclick="saveProgress()">Save Progress</button>
+        <button class="modal-btn danger" onclick="markFinished()">Mark as Finished</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Action Modal -->
+  <div class="modal-overlay" id="bookModal">
+    <div class="modal-card browse-modal">
+      <button class="modal-close" onclick="closeBookModal()">✕</button>
+      <div class="modal-cover large" id="bmCover"></div>
+      <h3 id="bmTitle"></h3>
+      <p class="modal-author" id="bmAuthor"></p>
+      <p class="bm-genre" id="bmGenre"></p>
+      <p class="bm-desc" id="bmDesc"></p>
+      <p class="bm-pages" id="bmPages"></p>
+      <div class="modal-actions">
+        <button class="modal-btn primary" onclick="addToCurrent()">Start Reading</button>
+        <button class="modal-btn secondary" onclick="toggleBookmark()">🔖 Bookmark</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="read.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing Corner – The Reading Quill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="writes.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <a href="index.html" class="brand-link">THE READING QUILL</a>
+    <div class="topbar-right">
+      <button class="back-btn" id="backBtn" style="display:none">← My Articles</button>
+      <button class="publish-btn" id="publishBtn" style="display:none">Publish</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div id="viewDashboard" class="view">
+    <h2 class="dash-heading">Writing Corner</h2>
+    <p class="dash-sub">Your articles and drafts</p>
+    <div class="articles-grid" id="articlesGrid"></div>
+  </div>
+
+  <!-- EDITOR VIEW -->
+  <div id="viewEditor" class="view" style="display:none">
+    <div class="layout">
+
+      <!-- Left toolbar column -->
+      <div class="toolbar">
+        <button onclick="fmt('bold')" title="Bold"><b>B</b></button>
+        <button onclick="fmt('italic')" title="Italic"><i>I</i></button>
+        <button onclick="fmt('underline')" title="Underline"><u>U</u></button>
+        <div class="sep"></div>
+        <button onclick="fmt('formatBlock','h2')" title="Heading">H</button>
+        <button onclick="fmt('formatBlock','blockquote')" title="Quote">"</button>
+        <div class="sep"></div>
+        <button onclick="fmt('insertOrderedList')" title="Numbered">1.</button>
+        <button onclick="fmt('insertUnorderedList')" title="Bullet">•</button>
+        <div class="sep"></div>
+        <button onclick="insertLink()" title="Link">🔗</button>
+        <button onclick="fmt('removeFormat')" title="Clear">✕</button>
+        <div class="sep"></div>
+        <button class="save-btn" id="saveBtn" title="Save">💾</button>
+        <span class="save-status" id="saveStatus"></span>
+      </div>
+
+      <!-- Right editor area -->
+      <div class="editor-area">
+        <input type="text" id="articleTitle" class="title-input" placeholder="Your article title…" maxlength="120">
+        <div class="meta-row">
+          <input type="text" id="authorName" class="meta-input" placeholder="Your name">
+          <select id="genre" class="meta-input">
+            <option value="">Genre / Tag</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Poetry">Poetry</option>
+            <option value="Essay">Essay</option>
+            <option value="Opinion">Opinion</option>
+            <option value="Travel">Travel</option>
+            <option value="Science">Science</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="divider-line"></div>
+        <div class="editor" id="editor" contenteditable="true" data-placeholder="Start writing your article…"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PUBLISH MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3>🎉 Published!</h3>
+      <p id="modalSummary"></p>
+      <button class="modal-close" id="modalClose">Done</button>
+    </div>
+  </div>
+
+  <script src="writes.js"></script>
+</body>
+</html>
