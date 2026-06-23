@@ -458,7 +458,7 @@ header {
   font-family: 'Merriweather', serif;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #F3E9DC;
+  color: #613a06d7;
   text-decoration: none;
   letter-spacing: 1px;
 }
@@ -470,11 +470,12 @@ header {
 }
 
 .nav-links a {
-  color: #000000;
+  color: #65600b;
   text-decoration: none;
   font-size: 0.9rem;
   opacity: 0.85;
   transition: opacity 0.2s ease;
+  font-weight: bold;
 }
 
 .nav-links a:hover {
@@ -731,5 +732,100 @@ header {
 
   .button {
     width: 250px;
+  }
+}
+/* =========================
+   HAMBURGER MENU
+   ========================= */
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: #000000;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+
+  /* Hide desktop nav links */
+  .nav-links {
+    display: none;
+  }
+
+  /* Hide top-right Login & Sign Up buttons */
+  header {
+    display: none;
+  }
+
+  /* Navbar Layout */
+  .navbar {
+    width: 100%;
+    padding: 0 20px;
+    left: 0;
+    top: 20px;
+    justify-content: space-between;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* Mobile dropdown menu */
+  .mobile-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 260px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    list-style: none;
+    z-index: 1000;
+
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-menu li {
+    width: 100%;
+  }
+
+  .mobile-menu a:not(.nav-btn) {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+    padding: 8px 0;
+  }
+
+  .mobile-menu a:not(.nav-btn):hover {
+    color: #a8e063;
+  }
+
+  /* Keep original button styling */
+  .mobile-menu .nav-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .navbar .logo {
+    font-size: 0.95rem;
+    max-width: 200px;
   }
 }
